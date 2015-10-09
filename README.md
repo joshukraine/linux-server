@@ -1,8 +1,8 @@
-# My Dotfiles for Linux Desktop
+# My Dotfiles for Linux Server -- UNDER CONSTRUCTION
 
-These are my dotfiles and general system preferences adapted for Debian-type Linux systems. This setup is intended for a personal development machine, not a web-facing server.
+These are the minimal dotfiles I like to install on a headless Linux box (such as a web server) running bash.
 
-**Want basic dotfiles for a headless Linux server? Check out the [linux-server branch](https://github.com/joshukraine/dotfiles/tree/linux-server)**
+**Running Linux with a GUI as a development environment? Check out the [linux-desktop branch](https://github.com/joshukraine/dotfiles/tree/linux-desktop)**
 
 **Running OS X? Check out the [master branch](https://github.com/joshukraine/dotfiles).**
 
@@ -10,9 +10,7 @@ These are my dotfiles and general system preferences adapted for Debian-type Lin
 
 This script has been successfully tested on the following Linux distros:
 
-* Ubuntu 14.04, 15.04
-* Lubuntu 14.10, 15.04
-* Debian 7.8, 8.2
+* [...]
 
 ### Installation
 
@@ -73,4 +71,3 @@ When you invoke `bootstrap`, this is what it does in a nutshell:
 * http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
 * http://carlosbecker.com/posts/first-steps-with-mac-os-x-as-a-developer/
 * https://mattstauffer.co/blog/setting-up-a-new-os-x-development-machine-part-1-core-files-and-custom-shell
-* http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
