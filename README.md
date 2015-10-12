@@ -10,7 +10,7 @@ These are the minimal dotfiles I like to install on a headless Linux box (such a
 
 This script has been successfully tested on the following Linux distros:
 
-* [...]
+* Ubuntu 15.04
 
 ### Installation
 
