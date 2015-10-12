@@ -17,13 +17,13 @@ This script has been successfully tested on the following Linux distros:
 To install with a one-liner, run this:
 
 ```sh
-bash <(wget -qO- https://raw.githubusercontent.com/joshukraine/dotfiles/linux-desktop/bootstrap) 2>&1 | tee ~/bootstrap.log
+bash <(wget -qO- https://raw.githubusercontent.com/joshukraine/dotfiles/linux-server/bootstrap) 2>&1 | tee ~/bootstrap.log
 ```
 
 Want to read through the script first?
 
 ```sh
-wget -qO- https://raw.githubusercontent.com/joshukraine/dotfiles/linux-desktop/bootstrap > bootstrap
+wget -qO- https://raw.githubusercontent.com/joshukraine/dotfiles/linux-server/bootstrap > bootstrap
 less bootstrap
 bash bootstrap 2>&1 | tee ~/bootstrap.log
 ```
@@ -33,15 +33,9 @@ bash bootstrap 2>&1 | tee ~/bootstrap.log
 When you invoke `bootstrap`, this is what it does in a nutshell:
 
 * Patch the system and install various software packages
-* Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 * Set up some basic directories in `$HOME`
 * Symlink dotfiles to `$HOME`
-* Copy in solarized profile for [Terminator](https://launchpad.net/terminator)
-* Install several fixed-width fonts.
 * Install Vundle and plugins for vim.
-* Install [rbenv](https://github.com/sstephenson/rbenv) and [ruby-build](https://github.com/sstephenson/ruby-build#readme)
-* Install Ruby, Rails and related packages
-* Install Google Chrome (for compatible distros)
 
 
 ### Some of my favorite dotfile repos
