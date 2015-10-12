@@ -1,16 +1,20 @@
-# My Dotfiles for Linux Server -- UNDER CONSTRUCTION
+# My Dotfiles for Linux Server
 
 These are the minimal dotfiles I like to install on a headless Linux box (such as a web server) running bash.
 
-**Running Linux with a GUI as a development environment? Check out the [linux-desktop branch](https://github.com/joshukraine/dotfiles/tree/linux-desktop)**
+&#9657; **Running Linux with a GUI as a development environment? Check out the [linux-desktop branch](https://github.com/joshukraine/dotfiles/tree/linux-desktop)**
 
-**Running OS X? Check out the [master branch](https://github.com/joshukraine/dotfiles).**
+&#9657; **Running OS X? Check out the [master branch](https://github.com/joshukraine/dotfiles).**
 
 ### Supported distros
 
 This script has been successfully tested on the following Linux distros:
 
-* Ubuntu 15.04
+* Ubuntu 14.04, 15.04
+* Debian 8.1&#42;
+* Raspbian 4.1 (based on Debian Jessie)
+
+&#42; Some installations of Debian [do not include the `sudo` command](https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md#1-packages--dependencies) by default. In such cases, `sudo` must be installed manually in order for the installer below to succeed.
 
 ### Installation
 
