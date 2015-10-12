@@ -122,10 +122,10 @@ fi
 
 
 ################################################################################
-# 4. Setup dotfiles
+# 3. Setup dotfiles
 ################################################################################
 
-fancy_echo "$divider Step 4: Installing dotfiles..."
+fancy_echo "$divider Step 3: Installing dotfiles..."
 if [[ -d $DOTFILES_DIR ]]; then
   fancy_echo "Backing up old dotfiles to $HOME/old_dotfiles_backup..."
   rm -rf $OLD_DOTFILES_BACKUP
@@ -160,10 +160,10 @@ fancy_echo "Dotfiles setup complete!"
 
 
 ################################################################################
-# 6. Install Vundle and vim plugins
+# 4. Install Vundle and vim plugins
 ################################################################################
 
-fancy_echo "$divider Step 6: Installing Vundle and vim plugins..."
+fancy_echo "$divider Step 4: Installing Vundle and vim plugins..."
 if [ -d $HOME/.vim/bundle ]; then
   rm -rf $HOME/.vim/bundle
 fi
@@ -175,8 +175,16 @@ rm -rf $HOME/.vim/colors
 fancy_echo "Done!"
 
 
+################################################################################
+# 5. Tell bash the good news!
+################################################################################
+
+fancy_echo "$divider Step 5: Sourcing your shiny new .bashrc..."
+source $HOME/.bashrc
+
+
 echo ""
 echo "**************************************************************"
-echo "**** Setup script complete! Please restart your computer. ****"
+echo "**** Setup script complete! **********************************"
 echo "**************************************************************"
 echo ""
