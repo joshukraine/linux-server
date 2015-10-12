@@ -175,16 +175,8 @@ rm -rf $HOME/.vim/colors
 fancy_echo "Done!"
 
 
-################################################################################
-# 5. Tell bash the good news!
-################################################################################
-
-fancy_echo "$divider Step 5: Sourcing your shiny new .bashrc..."
-source $HOME/.bashrc
-
-
 echo ""
 echo "**************************************************************"
-echo "**** Setup script complete! **********************************"
+echo "**** Setup script complete! Please restart your computer. ****"
 echo "**************************************************************"
 echo ""
