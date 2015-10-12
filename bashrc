@@ -70,13 +70,16 @@ if [ -f "$HOME/git-prompt.sh" ]; then
   . "$HOME/git-prompt.sh"
 fi
 
-
 # }}}
 
 
 # Prompt {{{
 
-export PS1='\w$(__git_ps1 " (%s)")\$ '
+BLUE="\[\033[0;34m\]"
+GREEN="\[\033[0;32m\]"
+NO_COLOR="\[\033[0m\]"
+
+PROMPT_COMMAND='__git_ps1 "$GREEN\u@\h:$BLUE\w$NO_COLOR" " \\\$ "'
 
 # }}}
 
