@@ -6,7 +6,7 @@
 # This script is intended to set up a new Linux headless machine (such as a web
 # server) with my minimal dotfiles and preferences for bash.
 #
-# Much of this script was derived from thoughtbot's now unsupported Linux
+# Some of this script was derived from thoughtbot's now unsupported Linux
 # version of Laptop.
 # https://github.com/thoughtbot/laptop/tree/39768b19959f74724ed0c0ea92e5b2f6f78e45c1
 ################################################################################
@@ -33,10 +33,9 @@ set -u # Prevent unset variables
 
 osname=$(uname)
 divider="====> "
-# ruby_version="2.2.3"
 
 # These are the dotfiles that will be symlinked to $HOME/dotfiles
-files="gitconfig gitignore_global hushlogin tmux.conf vimrc bashrc"
+files="bash_profile bashrc git-completion.bash git-prompt.sh gitconfig gitignore_global tmux.conf vimrc"
 
 DOTFILES_DIR=$HOME/dotfiles
 OLD_DOTFILES_BACKUP=$HOME/old_dotfiles_backup
@@ -96,21 +95,6 @@ sudo aptitude install -y python-software-properties
 fancy_echo "Installing build-essential..."
 sudo aptitude install -y build-essential
 
-# fancy_echo "Installing libraries for common Ruby/Rails/gem dependencies..."
-# sudo aptitude install -y zlib1g-dev libssl-dev libreadline-dev libyaml-dev libsqlite3-dev libxml2-dev libxslt1-dev libcurl4-openssl-dev libffi-dev
-
-# fancy_echo "Installing sqlite3..."
-# sudo aptitude install -y sqlite3
-#
-# fancy_echo "Installing Postgres..."
-# sudo aptitude install -y postgresql postgresql-server-dev-all
-#
-# fancy_echo "Installing Redis..."
-# sudo aptitude install -y redis-server
-#
-# fancy_echo "Installing ctags..."
-# sudo aptitude install -y exuberant-ctags
-
 fancy_echo "Installing vim ..."
 sudo aptitude remove vim-tiny -y
 sudo aptitude install -y vim-gtk
@@ -137,41 +121,6 @@ else
 fi
 
 
-# fancy_echo "Installing ImageMagick..."
-# sudo aptitude install -y imagemagick
-#
-# fancy_echo "Installing zsh..."
-# sudo aptitude install -y zsh
-#
-# fancy_echo "Installing node..."
-# sudo aptitude install -y nodejs
-#
-# fancy_echo "Installing xclip..."
-# sudo aptitude install -y xclip
-#
-# if grep -qiE 'precise|saucy|trusty|utopic|vivid|wheezy' /etc/os-release; then
-#   fancy_echo "Installing gnome-tweak-tool..."
-#   sudo aptitude install -y gnome-tweak-tool
-# fi
-#
-# fancy_echo "Installing Terminator!!! :D ..."
-# sudo aptitude install -y terminator
-#
-
-################################################################################
-# 3. Install oh-my-zsh
-################################################################################
-
-# fancy_echo "$divider Step 3: Installing oh-my-zsh..."
-# if [ -d "$HOME/.oh-my-zsh" ]; then
-#   rm -rf $HOME/.oh-my-zsh
-# fi
-# git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-#
-# fancy_echo "Changing your shell to zsh ..."
-# chsh -s $(which zsh)
-
-
 ################################################################################
 # 4. Setup dotfiles
 ################################################################################
@@ -183,6 +132,14 @@ if [[ -d $DOTFILES_DIR ]]; then
   cp -R $DOTFILES_DIR $OLD_DOTFILES_BACKUP
   rm -rf $DOTFILES_DIR
 fi
+
+fancy_echo "Backing up stock bash configs..."
+bash_files="bashrc bash_profile profile"
+for file in $bash_files; do
+  if [ -f $HOME/.$file ]; then
+    mv $HOME/.$file "$HOME/.${file}_backup"
+  fi
+done
 
 fancy_echo "Cloning your dotfiles repo to ${DOTFILES_DIR} ..."
 cd $HOME
@@ -199,41 +156,7 @@ for file in $files; do
   ln -nfs "$DOTFILES_DIR/$file" "$HOME/.$file"
 done
 
-# fancy_echo "-> Linking $DOTFILES_DIR/bin/tat to $HOME/bin/tat..."
-# if [ ! -d "$HOME/bin/" ]; then
-#   mkdir "$HOME/bin"
-# fi
-# ln -nfs "$DOTFILES_DIR/bin/tat" "$HOME/bin/tat"
-#
-# fancy_echo "Configuring Terminator..."
-# if [[ -f "$HOME/.config/terminator/config" ]]; then
-#   fancy_echo "Backing up existing Terminator profile..."
-#   mv $HOME/.config/terminator/config $HOME/.config/terminator/config_backup
-#   fancy_echo "Copying new Terminator profile into place..."
-#   cp $DOTFILES_DIR/terminator/config $HOME/.config/terminator/config
-# else
-#   mkdir -p $HOME/.config/terminator
-#   fancy_echo "Copying Terminator profile into place..."
-#   cp $DOTFILES_DIR/terminator/config $HOME/.config/terminator/config
-# fi
 fancy_echo "Dotfiles setup complete!"
-
-
-################################################################################
-# 5. Install Powerline-patched fonts
-################################################################################
-
-# fancy_echo "$divider Step 5: Installing fixed-width fonts patched for use with Powerline symbols..."
-# if [ -d "$HOME/src/fonts" ]; then
-#   rm -rf $HOME/src/fonts
-# fi
-# git clone https://github.com/powerline/fonts.git $HOME/src/fonts
-# cd $HOME/src/fonts
-# ./install.sh
-# cd $HOME
-# rm -rf $HOME/src/fonts
-#
-# fancy_echo "Done!"
 
 
 ################################################################################
@@ -251,60 +174,6 @@ rm -rf $HOME/.vim/colors
 
 fancy_echo "Done!"
 
-
-################################################################################
-# 7. Install rbenv and ruby-build
-################################################################################
-
-# fancy_echo "$divider Step 7: Installing rbenv and ruby-build..."
-# if [[ ! -d "$HOME/.rbenv" ]]; then
-#   fancy_echo "Installing rbenv..."
-#   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-#
-#   export PATH="$HOME/.rbenv/bin:$PATH"
-#   eval "$(rbenv init - zsh)"
-# fi
-#
-# if [[ ! -d "$HOME/.rbenv/plugins/ruby-build" ]]; then
-#   fancy_echo "Installing ruby-build..."
-#   git clone https://github.com/sstephenson/ruby-build.git \
-#     ~/.rbenv/plugins/ruby-build
-# fi
-
-################################################################################
-# 8. Install Ruby, Rails, and friends
-################################################################################
-
-# fancy_echo "$divider Step 8: Installing Ruby, Rails, and friends..."
-#
-# fancy_echo "Installing Ruby $ruby_version ..."
-# rbenv install -s "$ruby_version"
-#
-# fancy_echo "Setting $ruby_version as global default Ruby ..."
-# rbenv global "$ruby_version"
-#
-# fancy_echo "Updating to latest Rubygems version ..."
-# gem update --system
-#
-# fancy_echo "Installing Bundler..."
-# gem install bundler --no-document --pre
-#
-# fancy_echo "Installing Rails..."
-# gem install rails
-#
-
-################################################################################
-# 9. Install Google Chrome
-################################################################################
-
-# if grep -qiE 'precise|saucy|trusty|utopic|vivid' /etc/os-release; then
-#   fancy_echo "$divider Step 9: Installing Google Chrome..."
-#
-#   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-#   sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-#   sudo aptitude update
-#   sudo aptitude install -y google-chrome-stable
-# fi
 
 echo ""
 echo "**************************************************************"
