@@ -2,7 +2,7 @@
 
 These are the minimal dotfiles I like to install on a headless Linux box (such as a web server) running bash.
 
-&#9657; **Running Linux with a GUI as a development environment? Check out [My Dotfiles for Linux Desktop](https://github.com/joshukraine/dotfiles/tree/linux-desktop)**
+&#9657; **Running Linux with a GUI as a development environment? Check out [My Dotfiles for Linux Desktop](https://github.com/joshukraine/linux-desktop)**
 
 &#9657; **Running OS X? Check out [My Dotfiles for OS X](https://github.com/joshukraine/dotfiles).**
 
